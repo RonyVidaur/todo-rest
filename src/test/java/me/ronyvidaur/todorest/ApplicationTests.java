@@ -44,6 +44,11 @@ public class ApplicationTests {
 
 	}
 
+	@Test
+	public void exceptionIsCaptured() throws Exception {
+		this.mockMvc.perform(get("/todos/strange-url").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+		.andExpect(status().is4xxClientError());
+	}
 
 	@Test
 	public void testTodoController() {

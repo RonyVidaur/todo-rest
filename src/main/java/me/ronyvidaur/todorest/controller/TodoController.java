@@ -42,7 +42,7 @@ public class TodoController {
         ResponseBuilder.init();
         ResponseBuilder.setBaseProperties(todo, true, request.getRequestURI());
         todoService.addTodo(todo);
-        return ResponseEntity.ok().body(ResponseBuilder.build());
+        return ResponseEntity.status(HttpStatus.CREATED).body(ResponseBuilder.build());
     }
 
     @PutMapping("/todos/{id}")

@@ -4,6 +4,7 @@ import me.ronyvidaur.todorest.entity.Task;
 import me.ronyvidaur.todorest.service.TaskService;
 import me.ronyvidaur.todorest.util.ResponseBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
@@ -48,7 +49,7 @@ public class TaskController {
         Task newTask = new Task(task.getName(),task.getPriority(),task.getStatus(), todoId);
         taskService.addTask(newTask);
         ResponseBuilder.setBaseProperties(newTask, true, request.getRequestURI());
-        return ResponseEntity.ok().body(ResponseBuilder.build());
+        return ResponseEntity.status(HttpStatus.CREATED).body(ResponseBuilder.build());
     }
 
     @PutMapping("/tasks/{id}")
